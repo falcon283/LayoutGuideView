@@ -27,8 +27,12 @@ public class LayoutGuideView: UIView {
 
     public override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
-        guard newSuperview?.layoutGuides.contains(guide) == false else { return }
-        newSuperview?.addLayoutGuide(guide)
+        guard let superview = newSuperview else { return }
+        if superview is UIStackView {
+            fatalError("LayoutGuideView inside StackView is not allowed")
+        } else if superview.layoutGuides.contains(guide) == false {
+            newSuperview?.addLayoutGuide(guide)
+        }
     }
 
     public override func updateConstraints() {
@@ -57,9 +61,9 @@ public class LayoutGuideView: UIView {
             case let (i as LayoutGuideView, t as LayoutGuideView):
                 item = i.guide
                 toItem = t.guide
-            case let (i as LayoutGuideView, _) where i === self:
+            case let (i as LayoutGuideView, _):
                 item = i.guide
-            case let (_, t as LayoutGuideView) where t === self:
+            case let (_, t as LayoutGuideView):
                 toItem = t.guide
             default:
                 return $0
