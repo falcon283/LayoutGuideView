@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,9 +24,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="5PG-8D-69d"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tx3-gi-3GD" customClass="LayoutGuideView" customModule="LayoutGuideView">
-                                <rect key="frame" x="275" y="20" width="100" height="647"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="name" value="Leading"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyu-84-wc1" customClass="LayoutGuideView" customModule="LayoutGuideView">
                                 <rect key="frame" x="189.5" y="20" width="50" height="647"/>
@@ -33,9 +34,34 @@
                                     <constraint firstAttribute="width" constant="50" id="Rgu-cO-nSC"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tx3-gi-3GD" customClass="LayoutGuideView" customModule="LayoutGuideView">
+                                <rect key="frame" x="275" y="20" width="100" height="647"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="name" value="Trailing"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PnQ-HR-j3B">
                                 <rect key="frame" x="100" y="20" width="89.5" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6m-E3-Gpa" customClass="LayoutGuideView" customModule="LayoutGuideView">
+                                        <rect key="frame" x="0.0" y="0.0" width="25" height="647"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDv-w7-M6s">
+                                        <rect key="frame" x="25" y="0.0" width="12.5" height="647"/>
+                                        <color key="backgroundColor" red="0.99544268849999995" green="0.12740498780000001" blue="0.01133587491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="o6m-E3-Gpa" firstAttribute="leading" secondItem="PnQ-HR-j3B" secondAttribute="leading" id="7pI-Bx-Pax"/>
+                                    <constraint firstItem="UDv-w7-M6s" firstAttribute="leading" secondItem="o6m-E3-Gpa" secondAttribute="trailing" id="MjR-Wj-uhc"/>
+                                    <constraint firstAttribute="bottom" secondItem="o6m-E3-Gpa" secondAttribute="bottom" id="TCN-nQ-nyo"/>
+                                    <constraint firstAttribute="bottom" secondItem="UDv-w7-M6s" secondAttribute="bottom" id="Tog-vf-Rzr"/>
+                                    <constraint firstItem="UDv-w7-M6s" firstAttribute="width" secondItem="o6m-E3-Gpa" secondAttribute="width" multiplier="1/2" id="jic-qn-mhC"/>
+                                    <constraint firstItem="o6m-E3-Gpa" firstAttribute="top" secondItem="PnQ-HR-j3B" secondAttribute="top" id="peO-60-c8y"/>
+                                    <constraint firstItem="UDv-w7-M6s" firstAttribute="top" secondItem="PnQ-HR-j3B" secondAttribute="top" id="yM6-mA-2yp"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKf-uY-GQ5">
                                 <rect key="frame" x="239.5" y="20" width="35.5" height="647"/>
@@ -61,6 +87,7 @@
                             <constraint firstItem="zgJ-2F-VLn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YqC-Op-HO3"/>
                             <constraint firstItem="PnQ-HR-j3B" firstAttribute="leading" secondItem="zgJ-2F-VLn" secondAttribute="trailing" id="a1E-7S-xtT"/>
                             <constraint firstItem="lyu-84-wc1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="27" id="dZg-Yk-pcK"/>
+                            <constraint firstItem="o6m-E3-Gpa" firstAttribute="width" secondItem="lyu-84-wc1" secondAttribute="width" multiplier="1/2" id="flB-Vm-0a5"/>
                             <constraint firstItem="Tx3-gi-3GD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qAK-lb-cZx"/>
                             <constraint firstItem="lyu-84-wc1" firstAttribute="leading" secondItem="PnQ-HR-j3B" secondAttribute="trailing" id="rd8-Zn-pzn"/>
                             <constraint firstItem="Tx3-gi-3GD" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="se4-fh-Uq9"/>

@@ -8,13 +8,33 @@
 
 import Foundation
 
+/**
+ Using Autolayout it's really common to use dummy/spacing views to achieve a specific Layout.
+ Dummy views come in help when you want to add a constraint relationship between empty spaces.
+ It's totally fine to use dummy/spacing views but when they are too many on the hierarchy the rendering process
+ may slow down. `UILayoutGuide` come in help because it allows you to set constraints avoiding the view overhead.
+
+ Because it's not possible to place UILayoutGuide directly from Interface Builder as Xcode out of the box feature,
+ `LayoutGuideView` allows you to place `UILayoutGuide` as any dummy/spacing view. The dummy view will be replaced
+ at runtime using a carbon copy `UILayoutGuide` moving all the dummy/spacing view constraint to the `UILayoutGuide`.
+
+ Just place any `LayoutGuideView` you like on IB, with the relatives constraints, and it will be replaced by a
+ twin `UILayoutGuide` at runtime.
+
+ - Warning
+    Do not use `LayoutGuideView` inside a `UIStackView`.
+
+ - Warning
+    Do instanciate a `LayoutGuideView` programmatically.
+ */
 public class LayoutGuideView: UIView {
 
-    private let guide: UILayoutGuide = {
-        let guide = UILayoutGuide()
-        guide.identifier = "Generated-by-LayoutGuideView"
-        return guide
-    }()
+    /// The name you can use to identify the Generated UILayoutGuide.
+    @IBInspectable
+    public internal(set) var name: String?
+
+    /// The guide that will replace the placeholder view.
+    private let guide = UILayoutGuide()
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +43,18 @@ public class LayoutGuideView: UIView {
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        guide.identifier = [String(describing: type(of: self)),
+                            name.map { "\($0)" }]
+            .compactMap { $0 }
+            .joined(separator: "-")
+    }
+
+    public override func addSubview(_ view: UIView) {
+        fatalError("You can't add subviews to a LayouGuideView. Please move the subviews out of it.")
     }
 
     public override func willMove(toSuperview newSuperview: UIView?) {
