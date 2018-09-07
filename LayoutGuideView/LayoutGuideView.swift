@@ -80,7 +80,7 @@ public class LayoutGuideView: UIView {
 
     private func replaceConstraints(_ constraints: [NSLayoutConstraint]) {
 
-        let replacements: (active: [NSLayoutConstraint], inactive: [NSLayoutConstraint]) = constraints.reduce((active: [], inactive: [])) {
+        let replacements: (active: [LayoutGuideViewConstraint], inactive: [LayoutGuideViewConstraint]) = constraints.reduce((active: [], inactive: [])) {
             guard var item = $1.firstItem else { return $0 }
             let attribute = $1.firstAttribute
             let relatedBy = $1.relation
@@ -90,21 +90,21 @@ public class LayoutGuideView: UIView {
             let constant = $1.constant
 
             switch (item, toItem) {
-            case let (i as LayoutGuideView, t as LayoutGuideView):
+            case let (i as LayoutGuideView, t as LayoutGuideView) where i === self || t === self:
                 item = i.guide
                 toItem = t.guide
-            case let (i as LayoutGuideView, _):
+            case let (i as LayoutGuideView, _) where i === self:
                 item = i.guide
-            case let (_, t as LayoutGuideView):
+            case let (_, t as LayoutGuideView) where t === self:
                 toItem = t.guide
             default:
                 return $0
             }
 
-            let replacement = NSLayoutConstraint(item: item, attribute: attribute,
-                                                 relatedBy: relatedBy,
-                                                 toItem: toItem, attribute: secondAttribute,
-                                                 multiplier: multiplier, constant: constant)
+            let replacement = LayoutGuideViewConstraint(item: item, attribute: attribute,
+                                                        relatedBy: relatedBy,
+                                                        toItem: toItem, attribute: secondAttribute,
+                                                        multiplier: multiplier, constant: constant)
 
             if $1.isActive {
                 return ($0.active + [replacement], $0.inactive)
@@ -117,3 +117,5 @@ public class LayoutGuideView: UIView {
         NSLayoutConstraint.deactivate(replacements.inactive)
     }
 }
+
+private class LayoutGuideViewConstraint: NSLayoutConstraint { }
