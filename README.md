@@ -24,6 +24,26 @@ at runtime using a carbon copy `UILayoutGuide` moving all the dummy/spacing view
 `LayoutGuideView` works as a IB transient view that will be automatically translated into a `UILayoutGuide` at runtime.
 Once the `LayoutGuideView` is dispatched from IB and added to it's superview it starts the migration process. It automatically install the `UILayoutGuide` into its superview and starts migrating the constraints it's involved in. At the end of the constraints migration process the `LayoutGuideView` is then removed from it's superview to let it die in peace ⚰️
 
+## Installation
+
+[CocoaPods](http://cocoapods.org/)
+
+1. Add the following to your Podfile:
+
+```pod 'BrightFutures'```
+
+2. Integrate your dependencies using frameworks: add use_frameworks! to your Podfile.
+
+3. Run pod install.
+
+[Carthage](https://github.com/Carthage/Carthage)
+
+1. Add the following to your Cartfile:
+
+```github "falcon283/LayoutGuideView"```
+
+2. Run carthage update and follow the steps as described in Carthage's README.
+
 
 ## How to use it
 
