@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E43399622143DFCB00A572D1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		E4A973712141AA4000B206DB /* LayoutGuideView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutGuideView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A973742141AA4000B206DB /* LayoutGuideView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutGuideView.h; sourceTree = "<group>"; };
 		E4A973752141AA4000B206DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 		E4A973732141AA4000B206DB /* LayoutGuideView */ = {
 			isa = PBXGroup;
 			children = (
+				E43399622143DFCB00A572D1 /* README.md */,
 				E4A973742141AA4000B206DB /* LayoutGuideView.h */,
 				E4A973922141AA9E00B206DB /* LayoutGuideView.swift */,
 				E4A973752141AA4000B206DB /* Info.plist */,

@@ -12,22 +12,28 @@ import Foundation
  Using Autolayout it's really common to use dummy/spacing views to achieve a specific Layout.
  Dummy views come in help when you want to add a constraint relationship between empty spaces.
  It's totally fine to use dummy/spacing views but when they are too many on the hierarchy the rendering process
- may slow down. `UILayoutGuide` come in help because it allows you to set constraints avoiding the view overhead.
+ may slow down. `UILayoutGuide` comes in help because it allows you to set constraints avoiding the view overhead.
 
  Because it's not possible to place UILayoutGuide directly from Interface Builder as Xcode out of the box feature,
  `LayoutGuideView` allows you to place `UILayoutGuide` as any dummy/spacing view. The dummy view will be replaced
- at runtime using a carbon copy `UILayoutGuide` moving all the dummy/spacing view constraint to the `UILayoutGuide`.
+ at runtime using a carbon copy `UILayoutGuide` moving all the dummy/spacing view constraints to the `UILayoutGuide`.
 
  Just place any `LayoutGuideView` you like on IB, with the relatives constraints, and it will be replaced by a
  twin `UILayoutGuide` at runtime.
 
  - Warning
-    Do not use `LayoutGuideView` inside a `UIStackView`.
+    Do not use `LayoutGuideView` inside a `UIStackView`. **A fatal error will be raised**.
 
  - Warning
-    Do instanciate a `LayoutGuideView` programmatically.
+    Do not embed any subviews in `LayoutGuideView` using IB. **A fatal error will be raised**. You will be tempted
+    in order to use the `LayoutGuideView` as a dummy layout container. Just don't, place the view in the superview
+    and align it to the `LayoutGuideView` as you need.
+
+ - Note
+    You can't instanciate a `LayoutGuideView` programmatically due to it's goal is to be used from IB.
+    If you need so just use a plain `UILayoutGuide`
  */
-public class LayoutGuideView: UIView {
+public final class LayoutGuideView: UIView {
 
     /// The name you can use to identify the Generated UILayoutGuide.
     @IBInspectable
@@ -118,4 +124,4 @@ public class LayoutGuideView: UIView {
     }
 }
 
-private class LayoutGuideViewConstraint: NSLayoutConstraint { }
+private final class LayoutGuideViewConstraint: NSLayoutConstraint { }
